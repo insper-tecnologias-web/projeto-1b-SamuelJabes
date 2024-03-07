@@ -2,23 +2,46 @@
 {% load static %}
 
 {% block content %}
-<img src="{% static 'notes/img/logo-getit.png' %}" />
-<p>Como o Post-it, mas com outro verbo</p>
 
-<form method="post">
-    {% csrf_token %}
-    <label for="titulo">Título</label>
-    <input id="titulo" type="text" name="titulo" />
-    <label for="detalhes">Detalhes</label>
-    <textarea id="detalhes" name="detalhes"></textarea>
-    <input type="submit" />
-</form>
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
 
-<ul>
-    {% for note in notes %}
-    <li>{{ note.title }}</li>
-    {% endfor %}
-</ul>
+<main class="container">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        <input
+        class="form-card-title"
+        type="text"
+        name="titulo"
+        placeholder="Titulo"
+        id="titulo"
+        />
+        <textarea
+        class="autoresize"
+        name="detalhes"
+        placeholder="Digite o conteudo..."
+        id="detalhes"
+        ></textarea>
+        <button class="btn" type="submit">Criar</button>
+    </form>
+    
+    <div class="card-container">
+        {% for note in notes %}
+        <div class="card">
+            <a href="{% url 'update' note.id %}" name="update"> y </a>
+            <a href="{% url 'delete' note.id %}" name="delete"> x </a>
+            <h3 class="card-title">{{ note.title }}</h3>
+            <div class="card-content">
+              <p>
+                {{note.content}}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+</main>
 
 <script type="text/javascript" src="{% static 'notes/js/getit.js' %}"></script>
 {% endblock %}

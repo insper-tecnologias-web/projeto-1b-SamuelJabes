@@ -14,3 +14,21 @@ def index(request):
         all_notes = Note.objects.all()
         print(all_notes)
         return render(request, 'notes/index.html', {'notes': all_notes})
+    
+def delete(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.delete()
+    return redirect('index')
+
+def update(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    if request.method == 'POST':
+        note.title = request.POST.get('titulo')
+        note.content = request.POST.get('detalhes')
+        note.save()
+        return redirect('index')
+    else:
+        return render(request, 'notes/update.html', {'note': note})
+    
+def cancel(request):
+    return redirect('index')
