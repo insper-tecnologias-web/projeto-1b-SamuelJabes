@@ -24,6 +24,13 @@
         placeholder="Digite o conteudo..."
         id="detalhes"
         ></textarea>
+        <input
+            class="autoresize"
+            type="text"
+            name="tag"
+            placeholder="Crie uma TAG"
+            id="tag"
+        />
         <button class="btn" type="submit">Criar</button>
     </form>
     
@@ -38,9 +45,12 @@
                 {{note.content}}
               </p>
             </div>
+            <a href="" name=""> #{{note.tags.name}}</a>
           </div>
         {% endfor %}
     </div>
+
+    <a href="{% url 'all_tags' %}" name="all_tags">Tags</a>
 </main>
 
 <script type="text/javascript" src="{% static 'notes/js/getit.js' %}"></script>

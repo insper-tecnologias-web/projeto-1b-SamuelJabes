@@ -41,8 +41,16 @@
             placeholder="Digite o novo conteudo..."
             id="detalhes"
             ></textarea>
+            <input
+            class="form-card-title"
+            type="text"
+            name="tag"
+            placeholder="Crie uma TAG"
+            id="tag"
+            />
             <button class="btn" type="submit">Atualizar</button>
             <a class="cancel-btn" href="{% url 'cancel' %}" name="cancel">Cancelar</a>
+            
         </form>
     </main>
 </body>
