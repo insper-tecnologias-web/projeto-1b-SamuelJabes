@@ -23,7 +23,7 @@
     <main class="container">
         {% for tag in tags %}
         <div class="card">
-            <p> {{tag.name}}</p>
+            <a href="{% url 'tag' tag.id %}"> {{tag.name}}</a>
         </div>
         {% endfor %}
     </main>

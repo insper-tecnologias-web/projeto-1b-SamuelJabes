@@ -45,3 +45,8 @@ def cancel(request):
 def all_tags(request):
     all_tags_obj = Tag.objects.all()
     return render(request, 'notes/tags.html', {'tags': all_tags_obj})
+
+def tag(request, tag_id):
+    tag = Tag.objects.get(pk=tag_id)
+    notes = Note.objects.filter(tags=tag)
+    return render(request, 'notes/tag.html', {'notes': notes, 'tag': tag})
