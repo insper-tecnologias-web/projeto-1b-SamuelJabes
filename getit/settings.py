@@ -78,7 +78,7 @@ WSGI_APPLICATION = "getit.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='',
+        default='postgres://projeto_1b_0umc_user:UKO17OAqbGElVPAGYa2cqFNGygbWaw7F@dpg-cnu15vect0pc73a25010-a.oregon-postgres.render.com/projeto_1b_0umc',
         conn_max_age=600,
         ssl_require=not DEBUG
     )
