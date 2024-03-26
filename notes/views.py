@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Note, Tag
+from .models import Note, Tag, Fact
 
 
 def index(request):
@@ -50,3 +50,22 @@ def tag(request, tag_id):
     tag = Tag.objects.get(pk=tag_id)
     notes = Note.objects.filter(tags=tag)
     return render(request, 'notes/tag.html', {'notes': notes, 'tag': tag})
+
+def prova(request):
+    if request.method == 'POST':
+        desc_fact = request.POST.get('descricao')
+        # Cria o fato interessante
+        if desc_fact not in [fact.descricao for fact in Fact.objects.all()]:
+            fact = Fact(descricao=desc_fact, curtidas=0)
+            fact.save()
+        # TAREFA: Utilize o title e content para criar um novo Note no banco de dados
+    all_facts = Fact.objects.all()
+    print(all_facts)
+    qtd_facts = len(all_facts)
+    return render(request, 'notes/page.html', {'facts': all_facts, 'qtd_facts': qtd_facts})
+
+def curtiu(request, fact_id):
+    fact = Fact.objects.get(pk=fact_id)
+    fact.curtidas += 1
+    fact.save()
+    return redirect('prova')

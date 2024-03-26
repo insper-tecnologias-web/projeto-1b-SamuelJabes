@@ -9,4 +9,6 @@ urlpatterns = [
     path('cancel/', views.cancel, name='cancel'),
     path('tags/', views.all_tags, name='all_tags'),
     path('tags/<int:tag_id>/', views.tag, name='tag'),
+    path('prova/', views.prova, name='prova'),
+    path('prova/<int:fact_id>', views.curtiu, name='prova'),
 ]

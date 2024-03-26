@@ -1,0 +1,36 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
+
+<main class="container">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        <textarea class="autoresize" name="descricao" placeholder="Descricao" id="descricao"></textarea>
+        <button class="btn" type="submit">Submit</button>
+    </form>
+
+    <div class="descriptions">
+        {% for fact in facts %}
+        <div class="textinho">
+            <p >{{ fact.descricao }} ({{ fact.curtidas }}) <a href="{% url 'prova' fact.id %}" name="curtiu">Curtir!</a></p>
+        </div>
+        {% empty %}
+        <div class="textinho">
+            <p>Não há nenhum fato interessante cadastrado.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="textinho">
+        <p>{{ qtd_facts }} FunFacts Cadastradas!!</p>
+    </div>
+        
+</main>
+
+{% endblock %}

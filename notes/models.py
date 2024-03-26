@@ -14,3 +14,10 @@ class Note(models.Model):
 
     def __str__(self):
         return f"{self.id}. {self.title}"
+    
+class Fact(models.Model):
+    descricao = models.TextField(null=True)
+    curtidas = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.id}. {self.descricao}"

@@ -152,6 +152,17 @@ body {
   align-items: center
 }
 
+.descriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.textinho {
+  margin: 50px;
+}
+
 .card-color-1 {
   background-color: #ead3a7;
 }
