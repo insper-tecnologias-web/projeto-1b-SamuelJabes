@@ -1,0 +1,37 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
+
+<div>
+    <h1>{{ qtd_produtos }} produtos cadastrados </h1>
+</div>
+
+<main class="container">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        <input class="autoresize" type="text" name="nome" placeholder="Nome" id="nome" />
+        <input class="autoresize" type="text" name="preco" placeholder="Preco" id="preco" />
+        <input class="autoresize" type="text" name="estoque" placeholder="Estoque" id="estoque" />
+        <button class="btn" type="submit">Submit</button>
+    </form>
+
+    <div>
+        {% for produto in produtos %}
+        <ul>
+            <li>
+                <h3>{{ produto.nome }} - R$ {{ produto.preco }} - {{ produto.estoque }}: </h3>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+
+
+</main>
+
+{% endblock %}

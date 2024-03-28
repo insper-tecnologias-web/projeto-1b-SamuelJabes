@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Note, Tag, Fact
+from .models import Note, Tag, Fact, Produto
 
 
 def index(request):
@@ -69,3 +69,19 @@ def curtiu(request, fact_id):
     fact.curtidas += 1
     fact.save()
     return redirect('prova')
+
+def produto(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        preco = request.POST.get('preco')
+        estoque = request.POST.get('estoque')
+        # if promocao == 'on':
+        #     promocao = True
+        # else:
+        #     promocao = False
+        # Cria o produto
+        produto = Produto(nome=nome, preco=preco, estoque=estoque)
+        produto.save()
+    all_produtos = Produto.objects.all()
+    qtd_produtos = Produto.objects.count()
+    return render(request, 'notes/produto.html', {'produtos': all_produtos, 'qtd_produtos': qtd_produtos})

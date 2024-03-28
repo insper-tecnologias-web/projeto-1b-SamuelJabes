@@ -11,4 +11,5 @@ urlpatterns = [
     path('tags/<int:tag_id>/', views.tag, name='tag'),
     path('prova/', views.prova, name='prova'),
     path('prova/<int:fact_id>', views.curtiu, name='prova'),
+    path('produto/', views.produto, name='produto'),
 ]
